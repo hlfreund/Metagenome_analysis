@@ -1,3 +1,5 @@
-# Metagenome_analysis
+# Metagenome analyses!
 
-These are scripts I use to parse through shotgun metagenomes. This is a repository in progress!
+These are scripts I use to analyze shotgun metagenomes. 
+
+This is a repository in progress!
