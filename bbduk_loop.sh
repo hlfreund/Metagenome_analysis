@@ -1,6 +1,5 @@
 #!/bin/sh
 
-## use the output from decontamination step as input here
 ## input file will be R1_001_clean1 or R2_001_clean1
 
 for i in *_R1_001.fastq;
@@ -11,7 +10,6 @@ do
 
 done
 
-#cutadapt --pair-adapters -b ACTGCGAA -B TTCGCAGT -o ${SAMPLE}_R1_001_trim.fastq -p ${SAMPLE}_R2_001_trim.fastq  ${SAMPLE}_R1_001.fastq ${SAMPLE}_R2_001.fastq
 
 #/Volumes/HLF_SSD/Aronson_Lab_Data/bbmap/bbduk.sh in1=/Volumes/HLF_SSD/Aronson_Lab_Data/SaltonSea_POW/EA_Pool-POW_1-1a_S28_L001_R1_001_clean1.fastq in2=EA_Pool-POW_1-1a_S28_L001_R2_001_clean1.fastq out1=/Volumes/HLF_SSD/Aronson_Lab_Data/SaltonSea_POW/EA_Pool-POW_1-1a_S28_L001_R1_001_clean.fq out2=/Volumes/HLF_SSD/Aronson_Lab_Data/SaltonSea_POW/EA_Pool-POW_1-1a_S28_L001_R2_001_clean.fq  literal=ACTGCGAA,TTCGCAGT rcomp=t ktrim=r k=23 mink=11 hdist=1 maq=10 minlen=51 trimq=20 tpe tbo
 
