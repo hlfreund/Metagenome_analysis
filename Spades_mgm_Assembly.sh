@@ -23,7 +23,7 @@ do
     SAMPLE=$(echo ${i} | sed "s/_L001_R1_normalized_error_corrected.fastq.gz//")
     echo ${SAMPLE}_L001_R1 ${SAMPLE}_L001_R2 ${SAMPLE}_normalized_merged ${SAMPLE}_L001_R_unpaired
     
-    metaspades.py -1 ${SAMPLE}_L001_R1_normalized_error_corrected.fastq.gz -2 ${SAMPLE}_L001_R2_normalized_error_corrected.fastq.gz --merged ${SAMPLE}_normalized_merged_error_corrected.fastq.gz -s ${SAMPLE}_L001_R_unpaired_error_corrected.fastq.gz -o spades_mgm_assemblies_${today} --meta -t 4 --only-assembler
+    metaspades.py -1 ${SAMPLE}_L001_R1_normalized_error_corrected.fastq.gz -2 ${SAMPLE}_L001_R2_normalized_error_corrected.fastq.gz --merged ${SAMPLE}_normalized_merged_error_corrected.fastq.gz -s ${SAMPLE}_L001_R_unpaired_error_corrected.fastq.gz -o ${SAMPLE}_assembly_SPades_${today} --meta -t 4 --only-assembler
     
     #echo -e "Finished \aassembling ${SAMPLE}_L001_R1 ${SAMPLE}_L001_R2"
 
@@ -43,7 +43,7 @@ echo -e "Finished \aall assemblies with SPades"
 
 #scaffolds.fasta – resulting scaffolds (recommended for use as resulting sequences) *****
 #contigs.fasta – resulting contigs
-#assembly_graph.fastg – assembly graph
+#assembly_graph.fastg – assembly graph [To view FASTG and GFA files they recommend to use Bandage visualization tool]
 #contigs.paths – contigs paths in the assembly graph
 #scaffolds.paths – scaffolds paths in the assembly graph
 #before_rr.fasta – contigs before repeat resolution
@@ -56,8 +56,20 @@ echo -e "Finished \aall assemblies with SPades"
 #dataset.info – internal configuration file
 #input_dataset.yaml – internal YAML data set file
 #K<##>/– directory containing intermediate files from the run with K=<##>. These files should not be used as assembly results; use resulting contigs/scaffolds in files mentioned above.
+#
+# From https://cab.spbu.ru/files/release3.14.1/manual.html#sec3.5
+#<output_dir>/corrected/ directory contains reads corrected by BayesHammer in *.fastq.gz files; if compression is disabled, reads are stored in uncompressed *.fastq files
+#<output_dir>/scaffolds.fasta contains resulting scaffolds (recommended for use as resulting sequences)
+#<output_dir>/contigs.fasta contains resulting contigs
+#<output_dir>/assembly_graph_with_scaffolds.gfa contains SPAdes assembly graph and scaffolds paths in GFA 1.0 format
+#<output_dir>/assembly_graph.fastg contains SPAdes assembly graph in FASTG format
+#^^^ Note that sequences stored in assembly_graph.fastg correspond to contigs before repeat resolution (edges of the assembly graph). Paths corresponding to contigs after repeat resolution (scaffolding) are stored in contigs.paths (scaffolds.paths) in the format accepted by Bandage (see Bandage wiki for details)
+#<output_dir>/contigs.paths contains paths in the assembly graph corresponding to contigs.fasta (see details below)
+#<output_dir>/scaffolds.paths contains paths in the assembly graph corresponding to scaffolds.fasta (see details below)
 
-
+## Spades output FASTA format:
+#>NODE_3_length_237403_cov_243.207
+# Here 3 is the number of the contig/scaffold, 237403 is the sequence length in nucleotides and 243.207 is the k-mer coverage for the last (largest) k value used. Note that the k-mer coverage is always lower than the read (per-base) coverage.
 ## HPCC (Cluster systems) note
 ##SBATCH --mem-per-cpu=500G # --mem=900gb --> how to request for total allocation of mem rather than mem per cpu; include in job submission command
 
