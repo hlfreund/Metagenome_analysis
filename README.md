@@ -6,23 +6,23 @@ These are scripts I use to analyze **shotgun metagenomes**. These scripts can be
 
 Currently I am using a high performance computing cluster that uses a Slurm manager. 
 
-#### Trimming adapters & indexes from reads
+### Trimming adapters & indexes from reads
 
 - bbduk_loop.sh
 
-#### Normalize read depth of coverage
+### Normalize read depth of coverage
 
 - bbnorm_loop.sh
 
-#### Merging reads
+### Merging reads
 
 - bbmerge_loop.sh
 
-#### Read Error Correction
+### Read Error Correction
 
 - Spades_Mgm_Error_Correction.sh
 
-#### Metagenome Assembly
+### Metagenome Assembly
 
 - Spades_mgm_Assembly.sh
   - can be used for non-metagenomic genome assembly by changing metaspades.py to spades.py and removing the --meta argument
