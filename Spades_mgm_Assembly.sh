@@ -20,18 +20,21 @@ today=$(date "+%m.%d.%y") # date is the command to get today's date, and the "+%
 
 module load SPAdes/3.14.1
 
+
 for i in *_R1_normalized_error_corrected.fastq.gz;
 do
     SAMPLE=$(echo ${i} | sed "s/_L001_R1_normalized_error_corrected.fastq.gz//")
     echo ${SAMPLE}_L001_R1 ${SAMPLE}_L001_R2 ${SAMPLE}_normalized_merged ${SAMPLE}_L001_R_unpaired
     
-    metaspades.py -1 ${SAMPLE}_L001_R1_normalized_error_corrected.fastq.gz -2 ${SAMPLE}_L001_R2_normalized_error_corrected.fastq.gz --merged ${SAMPLE}_normalized_merged_error_corrected.fastq.gz -s ${SAMPLE}_L001_R_unpaired_error_corrected.fastq.gz -o ${SAMPLE}_assembly_SPades_${today} --meta -t 4 --only-assembler
-    
-    mv ${Path}/${SAMPLE}_assembly_SPades_${today}/scaffolds.fasta ${Path}/${SAMPLE}_assembly_SPades_${today}/${SAMPLE}_scaffolds.fasta
-    
-    cp ${Path}/${SAMPLE}_assembly_SPades_${today}/${SAMPLE}_scaffolds.fasta ${Path}/
-    #echo -e "Finished \aassembling ${SAMPLE}_L001_R1 ${SAMPLE}_L001_R2"
+    if [[ ! -d ${Path}/${SAMPLE}_assembly_SPades_${today} ]]; then
 
+        metaspades.py -1 ${SAMPLE}_L001_R1_normalized_error_corrected.fastq.gz -2 ${SAMPLE}_L001_R2_normalized_error_corrected.fastq.gz --merged ${SAMPLE}_normalized_merged_error_corrected.fastq.gz -s ${SAMPLE}_L001_R_unpaired_error_corrected.fastq.gz -o ${SAMPLE}_assembly_SPades_${today} --meta -t 4 --only-assembler
+    
+        mv ${Path}/${SAMPLE}_assembly_SPades_${today}/scaffolds.fasta ${Path}/${SAMPLE}_assembly_SPades_${today}/${SAMPLE}_scaffolds.fasta
+    
+        cp ${Path}/${SAMPLE}_assembly_SPades_${today}/${SAMPLE}_scaffolds.fasta ${Path}/
+    #echo -e "Finished \aassembling ${SAMPLE}_L001_R1 ${SAMPLE}_L001_R2"
+    fi
 done
 
 echo -e "Finished \aall assemblies with SPades"
