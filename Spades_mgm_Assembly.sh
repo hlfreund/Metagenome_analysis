@@ -12,13 +12,13 @@
 #SBATCH -p highmem
 # you can use any of the following: intel, batch, highmem, gpu
 
-cd /bigdata/aronsonlab/shared/HannahFreund/HannahFTemp/
+cd /bigdata/aronsonlab/shared/HannahFreund/HannahFTemp/ # change to your desired directory
 
-Path="/bigdata/aronsonlab/shared/HannahFreund/HannahFTemp/"
+Path="/bigdata/aronsonlab/shared/HannahFreund/HannahFTemp/" # initiate your path for later
 
 today=$(date "+%m.%d.%y") # date is the command to get today's date, and the "+%m_%d_%y" will print it in month_day_year format
 
-module load SPAdes/3.14.1
+module load SPAdes/3.14.1 # load the module on your computing cluster system (ignore this if running locally)
 
 
 for i in *_R1_normalized_error_corrected.fastq.gz;
