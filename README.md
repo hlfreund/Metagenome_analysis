@@ -26,9 +26,10 @@ Currently I am using a high performance computing cluster that uses a Slurm mana
 
 - Spades_mgm_Assembly.sh
   - can be used for non-metagenomic genome assembly by changing metaspades.py to spades.py and removing the --meta argument
-- megahit_loop_hpcc.sh  (for running on Slurm cluster system
+- megahit_loop_hpcc.sh  (for running on Slurm cluster system)
 - megahit_loop_local.sh (for running locally) 
   - both megahit scripts could be used for non-metagenomic genome assembly, but please refer to their manuals for available arguments & syntax.
+* Currently metaSPADES can only handle one library at a time, whereas megahit can do co-assembly
 
 ### Map Reads to Assembly
 
