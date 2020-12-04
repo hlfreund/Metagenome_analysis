@@ -26,7 +26,23 @@ Currently I am using a high performance computing cluster that uses a Slurm mana
 
 - Spades_mgm_Assembly.sh
   - can be used for non-metagenomic genome assembly by changing metaspades.py to spades.py and removing the --meta argument
+- megahit_loop_hpcc.sh  (for running on Slurm cluster system
 - megahit_loop_local.sh (for running locally) 
-- megahit_loop_hpcc.sh  (for running on cluster system)
   - both megahit scripts could be used for non-metagenomic genome assembly, but please refer to their manuals for available arguments & syntax.
 
+### Map Reads to Assembly
+
+- bwa_map_to_contigs.sh
+  - creates SAM file which is then converted to BAM file with Samtools
+  - After indexing and sorting the BAM file, this script uses Samtools to create stats about alignment + mapping
+
+### Contig Binning with MetaBAT2
+
+- metaBAT_contig_binning_loop_hpcc.sh (for running on Slurm cluster system)
+- metaBAT_contig_binning_loop.sh (for running locally)
+
+### Check Assembly Quality
+- Checkm_QA_MAGs.sh
+  - Check genome completeness, contamination & basic taxonomy
+- metaQUAST
+  - Compare genome assemblies, completeness, contamination, & basic taxonomy
