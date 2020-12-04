@@ -25,22 +25,10 @@ do
     SAMPLE=$(echo ${i} | sed "s/_L001_R1_normalized.fastq//")
     echo ${SAMPLE}
     
-    spades.py -1 ${SAMPLE}_L001_R1_normalized.fastq -2 ${SAMPLE}_L001_R2_normalized.fastq --merged ${SAMPLE}_normalized_merged.fastq -o spades_error_corrected_reads_${today} -t 4 --meta --only-error-correction
+    spades.py -1 ${SAMPLE}_L001_R1_normalized.fastq -2 ${SAMPLE}_L001_R2_normalized.fastq --merged ${SAMPLE}_normalized_merged.fastq -o ${SAMPLE}_spades_error_corrected_reads_${today} -t 4 --meta --only-error-correction
     
     #echo -e "Finished \aerror correction with ${SAMPLE}_L001_R1 ${SAMPLE}_L001_R2"
 
-done
-
-cd /bigdata/aronsonlab/shared/HannahFreund/HannahFTemp/spades_error_corrected_reads_${today}/corrected/
-
-for i in *.fastq.gz;
-do
-
-    mv ${SAMPLE}_L001_R1_normalized.00.0_0.cor.fastq.gz ${SAMPLE}_L001_R1_normalized_error_corrected.fastq.gz
-    mv ${SAMPLE}_L001_R2_normalized.00.0_0.cor.fastq.gz ${SAMPLE}_L001_R2_normalized_error_corrected.fastq.gz
-    mv ${SAMPLE}_normalized_merged.00.0_1.cor.fastq.gz ${SAMPLE}_normalized_merged_error_corrected.fastq.gz
-    mv ${SAMPLE}_L001_R_unpaired.00.0_0.cor.fastq.gz ${SAMPLE}_L001_R_unpaired_error_corrected.fastq.gz
-    cp *.fastq.gz ${Path}/
 done
 
 echo -e "Finished \aerror correction on mgm reads with SPades"
