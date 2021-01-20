@@ -43,7 +43,24 @@ Currently I am using a high performance computing cluster that uses a Slurm mana
 - metaBAT_contig_binning_loop.sh (for running locally)
 
 ### Check Assembly Quality
+
 - Checkm_QA_MAGs.sh
   - Check genome completeness, contamination & basic taxonomy
 - metaQUAST_Compare_mgm_Assemblies.sh
   - Compare genome assemblies, completeness, contamination, & basic taxonomy
+- Parse_QA_Results.sh
+    - separate genome bins based on completeness and contamination percentages
+- Examine_MGM_Quality.R
+    - visually examine genome bins based on completeness, contamination, and other stats (based on CheckM output)
+
+### Gene Prediction & Annotation
+
+- Taxonomic Annotation
+    - TBD
+- Functional Annotation
+    - TBD
+    
+### Reconstruct SSU rRNA genes from metagenome short reads
+- PhyloFlash_16S_ID.sh (for running on cluster system)
+    - uses metagenome short reads to assemble into possible SSU rRNA genes (16S, 18S) for taxnomic identification
+
